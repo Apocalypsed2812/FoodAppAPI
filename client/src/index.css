@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer components {
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;700;800&display=swap");
+    .containerLayout {
+        max-width: 1300px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0 16px;
+    }
+    * {
+        font-family: "Poppins", sans-serif;
+    }
+    .header .active {
+        background-color: rgb(240, 249, 255);
+        color: #0284c7;
+    }
+    .homePageMain {
+        background-image: url("https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1267&amp;q=80");
+    }
+}
