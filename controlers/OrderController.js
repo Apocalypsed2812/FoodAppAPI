@@ -13,7 +13,7 @@ class OrderController {
     async addOrder(req, res) {
         try {
             let {name, address, phone, product, total, date} = req.body
-            let data = { name, address, phone, product, total, date, status: 'Đang Giao' }
+            let data = { name, address, phone, product: JSON.parse(product), total, date, status: 'Đang Giao' }
             let order = new Order(data);
             try {
                 await order.save();
