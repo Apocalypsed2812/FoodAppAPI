@@ -7,6 +7,11 @@ class UserController {
         return res.json({ success: true, user: req.user })
     }
 
+    async getAllUserData(req, res) {
+        let user = await User.find({}).lean();
+        return res.json({ success: true, user })
+    }
+
     async addProductToCart(req, res) {
         try {
             const user = req.user
