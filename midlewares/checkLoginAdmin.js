@@ -11,7 +11,7 @@ module.exports = async function checkLoginAdmin(req, res, next) {
             let idUser = decoded.id
             let user = await User.findById(idUser).select("-password")
             if (!user) return res.json({ success: false, message: "User not found" })
-            if(user.role !== 'admin') return res.json({ success: false, message: "Account was is admin" })
+            if(user.role !== 'admin') return res.json({ success: false, message: "Account must admin" })
             // req.user = user
             next();
         });

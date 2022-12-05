@@ -11,6 +11,7 @@ module.exports = async function checkLoginUser(req, res, next) {
             let idUser = decoded.id
             let user = await User.findById(idUser).select("-password")
             if (!user) return res.json({ success: false, message: "User not found" })
+            if(user.role !== 'user') return res.json({ success: false, message: "Account must user" })
             req.user = user
             next();
         });
