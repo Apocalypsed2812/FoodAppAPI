@@ -7,10 +7,10 @@ class UserController {
         return res.json({ success: true, user: req.user })
     }
 
-    async getAllUserData(req, res) {
-        let user = await User.find({}).lean();
-        return res.json({ success: true, user })
-    }
+    // async getAllUserData(req, res) {
+    //     let user = await User.find({}).lean();
+    //     return res.json({ success: true, user })
+    // }
 
     async addProductToCart(req, res) {
         try {
@@ -70,6 +70,17 @@ class UserController {
             user.cart = user.cart.filter(item => item.id !== product_id)
             await user.save()
             return res.json({ success: true, user })
+        } catch (err) {
+            return res.json({ success: false, message: err.message })
+        }
+    }
+
+    async changeInfo(req, res){
+        try {
+            let { id, name, email, phone } = req.body
+            await Product.findOneAndUpdate({ _id: id }, {name, phone, email})
+            const user = await User.findOne({ _id: id })
+            return res.json({ success: true, message: "Information User Updated", user })
         } catch (err) {
             return res.json({ success: false, message: err.message })
         }
