@@ -78,7 +78,7 @@ class UserController {
     async changeInfo(req, res){
         try {
             let { id, email, phone } = req.body
-            await Product.findOneAndUpdate({ _id: id }, {phone, email})
+            await User.findOneAndUpdate({ _id: id }, {phone, email})
             const user = await User.findOne({ _id: id })
             return res.json({ success: true, message: "Information User Updated", user })
         } catch (err) {
