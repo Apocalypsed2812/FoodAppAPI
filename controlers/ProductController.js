@@ -4,15 +4,15 @@ const uploadImage = require("../lib/uploadImage")
 class ProductController {
     async getProduct(req, res) {
         try {
-            let products = await Product.find({status: 'Still'}).lean();
+            let products = await Product.find({}).lean();
             return res.json({ success: true, products })
         } catch (err) {
             return res.json({ success: false, message: err.message })
         }
     }
-    async getAllProduct(req, res) {
+    async getProductStill(req, res) {
         try {
-            let products = await Product.find({}).lean();
+            let products = await Product.find({status: 'Still'}).lean();
             return res.json({ success: true, products })
         } catch (err) {
             return res.json({ success: false, message: err.message })
