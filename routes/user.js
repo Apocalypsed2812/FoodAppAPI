@@ -5,7 +5,7 @@ const UserController = require('../controlers/UserController.js')
 const checkLoginUser = require('../midlewares/checkLoginUser')
 const checkLoginAdmin = require('../midlewares/checkLoginAdmin')
 
-// router.get('/get-all-user', UserController.getAllUserData)
+router.get('/get-all-user', UserController.getAllUserData)
 // router.get('/get-all-user', checkLoginAdmin, UserController.getAllUserData)
 router.get('/get-user', checkLoginUser, UserController.getUserData)
 router.post('/add-to-cart', checkLoginUser, UserController.addProductToCart)
