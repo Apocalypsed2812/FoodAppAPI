@@ -10,6 +10,14 @@ class ProductController {
             return res.json({ success: false, message: err.message })
         }
     }
+    async getAllProduct(req, res) {
+        try {
+            let products = await Product.find({}).lean();
+            return res.json({ success: true, products })
+        } catch (err) {
+            return res.json({ success: false, message: err.message })
+        }
+    }
     async getProductBuyId(req, res) {
         try {
             let { id } = req.params;
