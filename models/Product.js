@@ -10,7 +10,8 @@ var productSchema = new mongoose.Schema({
     sold: { type: Number, default: 0 },
     price: { type: Number },
     sale: { type: Number, default: 0 },
-    slug: { type: String, slug: "name" }
+    slug: { type: String, slug: "name" },
+    status: { type: String, default: "" },
 });
 mongoose.plugin(slug);
 module.exports = mongoose.model('Product', productSchema);

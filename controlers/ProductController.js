@@ -34,7 +34,7 @@ class ProductController {
                 if (files.image) {
                     image_url = await uploadImage(files.image[0])
                 }
-                let data = { name, quantity, description, category, foodstore, price, image_url }
+                let data = { name, quantity, description, category, foodstore, price, image_url, status: "still" }
                 let product = new Product(data);
                 try {
                     await product.save();
