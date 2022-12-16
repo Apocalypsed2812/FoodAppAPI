@@ -41,7 +41,8 @@ class FoodStoreController {
         try {
             let { foodstore_id } = req.body
             await FoodStore.findOneAndDelete({ _id: foodstore_id })
-            return res.json({ success: true, message: "FoodStore deleted" })
+            let foodStores = await FoodStore.find({}).lean()
+            return res.json({ success: true, message: "FoodStore deleted", foodStores })
         } catch (err) {
             return res.json({ success: false, message: err.message })
         }
@@ -51,7 +52,8 @@ class FoodStoreController {
         try {
 			let { id, name, address, description } = req.body
 			await FoodStore.findOneAndUpdate({ _id: id }, {name, address, description})
-			return res.json({ success: true, message: "FoodStore updated" })
+            let foodStores = await FoodStore.find({}).lean()
+			return res.json({ success: true, message: "FoodStore updated", foodStores })
         } catch (err) {
             return res.json({ success: false, message: err.message })
         }

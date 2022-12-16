@@ -38,7 +38,8 @@ class CategoryController {
         try {
             let { category_id } = req.body
             await Category.findOneAndDelete({ _id: category_id })
-            return res.json({ success: true, message: "Category deleted" })
+            let categorys = await Category.find({}).lean()
+            return res.json({ success: true, message: "Category deleted", categorys })
         } catch (err) {
             return res.json({ success: false, message: err.message })
         }
@@ -48,7 +49,8 @@ class CategoryController {
         try {
 			let { id, name } = req.body
 			await Category.findOneAndUpdate({ _id: id }, {name})
-			return res.json({ success: true, message: "Category updated" })
+            let categorys = await Category.find({}).lean()
+			return res.json({ success: true, message: "Category updated", categorys })
         } catch (err) {
             return res.json({ success: false, message: err.message })
         }

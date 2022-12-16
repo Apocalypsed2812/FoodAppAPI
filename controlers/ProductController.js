@@ -60,7 +60,8 @@ class ProductController {
         try {
             let { id } = req.body
             await Product.findOneAndDelete({ _id: id })
-            return res.json({ success: true, message: "Product deleted" })
+            let products = await Product.find({}).lean()
+            return res.json({ success: true, message: "Product deleted", products })
         } catch (err) {
             return res.json({ success: false, message: err.message })
         }
@@ -70,7 +71,8 @@ class ProductController {
         try {
             let { id, name, quantity, price, description, status } = req.body
             await Product.findOneAndUpdate({ _id: id }, { name, quantity, price, description, status })
-            return res.json({ success: true, message: "Product updated" })
+            let products = await Product.find({}).lean()
+            return res.json({ success: true, message: "Product updated", products })
         } catch (err) {
             return res.json({ success: false, message: err.message })
         }

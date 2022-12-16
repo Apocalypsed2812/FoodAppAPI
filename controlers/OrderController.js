@@ -36,15 +36,16 @@ class OrderController {
     //     }
     // }
 	
-	// async updateOrder(req, res) {
-    //     try {
-    //         let { id, name, quantity, price, description } = req.body
-    //         await Product.findOneAndUpdate({ _id: id }, {name, quantity, price, description})
-    //         return res.json({ success: true, message: "Product updated" })
-    //     } catch (err) {
-    //         return res.json({ success: false, message: err.message })
-    //     }
-    // }
+	async updateOrder(req, res) {
+        try {
+            let { id, name, address, phone, total, status } = req.body
+            await Order.findOneAndUpdate({ _id: id }, { name, address, phone, total, status })
+            let orders = await Order.find({}).lean()
+            return res.json({ success: true, message: "Product updated", orders })
+        } catch (err) {
+            return res.json({ success: false, message: err.message })
+        }
+    }
 }
 
 module.exports = new OrderController();
