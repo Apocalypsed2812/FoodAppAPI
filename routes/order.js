@@ -6,8 +6,8 @@ const OrderController = require('../controlers/OrderController.js')
 
 router.get('/', OrderController.getOrder)
 router.post('/add', OrderController.addOrder)
+router.post('/update', OrderController.updateOrder)
 // router.get('/:id', ProductController.getProductBuyId)
 // router.post('/delete', ProductController.deleteProduct)
-// router.post('/update', ProductController.updateProduct)
 
 module.exports = router
