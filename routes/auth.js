@@ -9,6 +9,8 @@ router.post('/login', AuthController.login)
 
 router.post('/logout', AuthController.logout)
 
+router.post('/change-password', AuthController.changePassword)
+
 router.post('/referesh-token', AuthController.refereshToken)
 
 
