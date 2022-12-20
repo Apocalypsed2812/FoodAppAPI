@@ -23,10 +23,10 @@ class AuthController {
     async changePassword(req, res) {
         try {
             const { username, password, newPassword } = req.body;
-            const user = await User.findOne({ username, password })
-            if (!user) return res.json({ success: false, message: "Password not correct" })
+            const user = await User.findOne({ username })
+            if (user.password !== password) return res.json({ success: false, message: "Password not correct" })
             const passwordHash = await bcrypt.hash(newPassword, 10)
-            await User.findOneAndUpdate({ username }, { password: passwordHash})
+            await User.findOneAndUpdate({ _id: user._id }, { password: passwordHash})
             return res.json({ success: true, message: "Change password successfully" })
         } catch (error) {
             return res.status(500).json({ success: false, message: "Error: " + error.message })
