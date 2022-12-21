@@ -12,7 +12,7 @@ class ProductController {
     }
     async getProductStill(req, res) {
         try {
-            let products = await Product.find({status: 'Still'}).lean();
+            let products = await Product.find({status: 'Vẫn Còn'}).lean();
             return res.json({ success: true, products })
         } catch (err) {
             return res.json({ success: false, message: err.message })
@@ -42,7 +42,7 @@ class ProductController {
                 if (files.image) {
                     image_url = await uploadImage(files.image[0])
                 }
-                let data = { name, quantity, description, category, foodstore, price, image_url, status: "Still" }
+                let data = { name, quantity, description, category, foodstore, price, image_url, status: "Vẫn Còn" }
                 let product = new Product(data);
                 try {
                     await product.save();

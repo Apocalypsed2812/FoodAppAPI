@@ -5,6 +5,7 @@ const ProductController = require('../controlers/ProductController.js')
 const checkLoginUser = require('../midlewares/checkLoginUser')
 
 router.get('/', ProductController.getProduct)
+router.get('/still', ProductController.getProductStill)
 router.get('/:id', ProductController.getProductBuyId)
 router.post('/delete', ProductController.deleteProduct)
 router.post('/add', ProductController.addProduct)
