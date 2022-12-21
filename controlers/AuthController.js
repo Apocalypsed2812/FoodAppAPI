@@ -24,7 +24,8 @@ class AuthController {
         try {
             const { username, password, newPassword } = req.body;
             const user = await User.findOne({ username })
-            if (user.password !== password) return res.json({ success: false, message: "Password not correct" })
+            const matchedPassword = await bcrypt.compare(password, user.password)
+            if (!matchedPassword) return res.json({ success: false, message: "Password is not correct" })
             const passwordHash = await bcrypt.hash(newPassword, 10)
             await User.findOneAndUpdate({ _id: user._id }, { password: passwordHash})
             return res.json({ success: true, message: "Change password successfully" })
