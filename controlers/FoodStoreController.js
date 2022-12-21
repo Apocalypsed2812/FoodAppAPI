@@ -1,8 +1,8 @@
-const FoodStore = require("../models/FoodStore")
-var multiparty = require('multiparty');
-const uploadImage = require("../lib/uploadImage");
 const User = require("../models/User");
+const FoodStore = require("../models/FoodStore")
 const bcrypt = require('bcrypt')
+const uploadImage = require("../lib/uploadImage");
+var multiparty = require('multiparty');
 
 class FoodStoreController {
     async getFoodStore(req, res) {
@@ -39,9 +39,9 @@ class FoodStoreController {
                 }
                 let data = { name, username, address, description, image_url }
                 let foodStore = new FoodStore(data);
-                let password = '123456789'
-                const passwordHash = await bcrypt.hash(password, 10)
-                let user = new User({username, password: passwordHash})
+                let password = "123456789";
+                const passwordHash = await bcrypt.hash(password, 10);
+                let user = new User({username, password: passwordHash, role: "foodstore"});
                 try {
                     await foodStore.save();
                     await user.save();
