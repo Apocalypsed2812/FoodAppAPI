@@ -39,7 +39,7 @@ class FoodStoreController {
                 }
                 let data = { name, username, address, description, image_url }
                 let foodStore = new FoodStore(data);
-                let password = "123456789";
+                let password = "123456";
                 const passwordHash = await bcrypt.hash(password, 10);
                 let user = new User({username, password: passwordHash, role: "foodstore"});
                 try {
