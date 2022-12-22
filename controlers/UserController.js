@@ -8,7 +8,7 @@ class UserController {
     }
 
     async getAllUserData(req, res) {
-        let users = await User.find({}).lean();
+        let users = await User.find({role: 'user'}).lean();
         return res.json({ success: true, users })
     }
 
